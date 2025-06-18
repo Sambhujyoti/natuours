@@ -1,0 +1,42 @@
+extends base
+
+block content
+    main.main
+        .card-container
+            each eachTour in tours
+                .card
+                    .card__header
+                        .card__picture
+                            .card__picture-overlay &nbsp;
+                            img.card__picture-img(src=`/img/tours/${eachTour.imageCover}`, alt=`${eachTour.name}`)
+                        h3.heading-tertirary
+                            span= eachTour.name
+
+                    .card__details
+                        h4.card__sub-heading= `${eachTour.difficulty} ${eachTour.duration}-day tour`
+                        p.card__text= eachTour.summary
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-map-pin')
+                            span= eachTour.startLocation.description
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-calendar')
+                            span= eachTour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-flag')
+                            span= `${eachTour.locations.length} stops` 
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-user')
+                            span= `${eachTour.maxGroupSize} people` 
+
+                    .card__footer
+                        p
+                            span.card__footer-value= `$${eachTour.price} `
+                            span.card__footer-text per person
+                        p.card__ratings
+                            span.card__footer-value= eachTour.ratingsAverage
+                            span.card__footer-text= ` rating (${eachTour.ratingsQuantity})`
+                        a.btn.btn--green.btn--small(href=`/tour/${eachTour.slug}`) Details
