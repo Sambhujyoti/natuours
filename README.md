@@ -1,2 +1,2 @@
 Node Express App on an online travel agency.
-Forntend using PUG templates.
+Frontend using PUG templates.
